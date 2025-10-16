@@ -1,0 +1,16 @@
+{
+  "ignore": [
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/reports/**"
+  ],
+  "reporters": ["console", "html"],
+  "reportersOptions": {
+    "html": {
+      "output": "reports/jscpd"
+    }
+  },
+  "threshold": 5
+}
