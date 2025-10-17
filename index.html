@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isometric Cube Viewport</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: #d9d9d9;
+        color: #1d1d1f;
+        overflow: hidden;
+      }
+
+      #app {
+        position: fixed;
+        inset: 0;
+      }
+
+      canvas {
+        display: block;
+      }
+
+      #hud {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        max-width: min(320px, 80vw);
+      }
+
+      #hud h1 {
+        margin: 0;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      #views {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      #views button {
+        flex: 1 1 45%;
+        border: none;
+        border-radius: 0.65rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: rgba(29, 29, 31, 0.08);
+        color: inherit;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      #views button:hover {
+        background: rgba(29, 29, 31, 0.18);
+        transform: translateY(-1px);
+      }
+
+      #views button.active {
+        background: rgba(29, 29, 31, 0.3);
+      }
+
+      #instructions {
+        margin: 0;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        opacity: 0.75;
+      }
+
+      @media (max-width: 640px) {
+        #hud {
+          top: auto;
+          bottom: 1.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          align-items: center;
+          text-align: center;
+        }
+
+        #views button {
+          flex: 1 1 calc(50% - 0.5rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" role="presentation"></div>
+    <aside id="hud" aria-label="Isometric camera presets">
+      <h1>Isometric Views</h1>
+      <div id="views">
+        <button type="button" data-view="front-left" class="active">Front Left</button>
+        <button type="button" data-view="front-right">Front Right</button>
+        <button type="button" data-view="back-left">Back Left</button>
+        <button type="button" data-view="back-right">Back Right</button>
+        <button type="button" data-view="top">Top</button>
+      </div>
+      <p id="instructions">Drag to orbit · Scroll to zoom · Right-click to pan</p>
+    </aside>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
